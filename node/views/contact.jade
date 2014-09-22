@@ -1,0 +1,33 @@
+extend layout
+
+block contactForm
+    form(role="form" action='/contact', method='post')
+      div(class="form-group")
+        label(for="username") Name
+        input(type="text", class="form-control", id="username", name="username", placeholder="Enter Username")
+
+      div(class="form-group")
+        label(for="email") Email address
+        input(type="email", class="form-control", id="email", name="email", placeholder="Enter Email")
+
+      div(class="form-group")
+        label(for="message") Message
+        textarea(class="form-control", id="message", name="message", rows="10")   	  
+
+      button(type="submit" class="btn btn-default") Submit
+
+block header
+  header
+    .row
+      .col-md-1
+      .col-md-10
+        p. 
+          ... todo
+
+block content
+  content
+    .row
+      .col-md-1
+      .col-md-10    
+        .main-content
+          block contactForm         

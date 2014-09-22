@@ -1,0 +1,62 @@
+extend layout
+
+block loginWidget
+  .row 
+    .col-md-1
+    .col-md-10
+      .loginWidget
+        p Universal Conquest
+        form(class='login' action='/login', method='post')
+           label(for='username')
+              input(id='username', type='text', value='', placeholder='User Name/Email', name='username')
+           label(for='password')
+              input(id='password', type='password', value='', placeholder='Password', name='password') 
+           input(type='submit',value='Log In', data-transition='fade' class='btn btn-primary btn-sm', role='button')   
+
+block indexCarousel
+  div#carousel-example-generic(class='carousel slide', data-ride='carousel')
+    - var pictures = {'uchome1.jpg':'Explore', 'uchome2.jpg':'Research', 'uchome3.jpg':'Conquer'}
+
+    ol(class='carousel-indicators')
+      - var i = 0
+      each val in pictures
+        li(data-target="#carousel-example-generic" data-slide-to=i class="active")
+        -i++
+
+    div(class="carousel-inner")
+      - var first = true
+      each val, index in pictures
+        if first
+          div(class="item active")
+            img(src="../images/" + index)
+            div(class="carousel-caption")= val           
+          - first = false
+        else
+          div(class="item")
+            img(src="../images/" + index)
+            div(class="carousel-caption")= val               
+
+    a(class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev")
+      span(class="glyphicon glyphicon-chevron-left")
+    a(class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next")
+      span(class="glyphicon glyphicon-chevron-right")
+
+block header
+  block loginWidget
+
+  header
+    .row
+      .col-md-1
+      .col-md-10
+        div(class='jumbotron')
+          p 
+            block indexCarousel
+          p#signupBtn
+            a(href='/signup', class='btn btn-primary btn-lg', role='button') Sign Up Now
+
+block content
+  content
+    .row
+      .col-md-1
+      .col-md-10    
+        .main-content

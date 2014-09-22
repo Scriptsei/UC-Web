@@ -1,0 +1,24 @@
+doctype
+html
+  head
+    title #{title} - Universal Conquest
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/style/style.css')
+    script(rel='text/javascript', src='/bower_components/angular/angular.min.js')
+    script(rel='text/javascript', src='/bower_components/jquery/dist/jquery.min.js')    
+    script(rel='text/javascript', src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+    script(rel='text/javascript', src='/bower_components/threejs/build/three.min.js')    
+    script(rel='text/javascript', src='/js/main.js')
+
+  body
+    .container-fluid  
+      block header
+
+      block content
+
+      footer
+        .row
+          .col-md-1
+          .col-md-10
+            p#footmenu <a href="/">home</a> | <a href="/signup">sign up</a> | <a href="/about">about</a> | <a href="/contact">contact</a>       
+            p#copy &copy;Monkey In Pants Studios 2014

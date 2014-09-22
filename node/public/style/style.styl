@@ -1,0 +1,115 @@
+/*
+ * Import nib
+ */
+@import 'nib'
+
+/*
+ * Grab a custom font from Google
+ */
+@import url('http://fonts.googleapis.com/css?family=Quicksand')
+
+/*
+ * Nib provides a CSS reset
+ */
+global-reset()
+
+/*
+ * Store the main color and
+ * background color as variables
+ */
+main-color = #3f3f3f
+background-color = #3f3f3f
+
+html,body
+  font-family 'Georgia'
+  background-color background-color
+  color #aaa
+  height 100%
+  margin 0px
+  padding 0px
+
+header
+  font-family 'Quicksand'
+  color #fff
+  font-size 25px
+  text-align center
+
+  /*
+   * Note the use of the `main-color`
+   * variable and the `darken` function
+   */
+  background-color main-color
+  text-shadow 0px -1px 0px darken(main-color, 30%)
+
+  #signupBtn
+    float right
+
+.main-content
+  height 100%
+
+  p
+    margin-bottom 20px
+
+.jumbotron
+  background-color main-color
+
+.loginWidget
+  font-family 'Quicksand'
+  padding 2px 30px
+  height 45px
+
+  /*
+   * Note the lack of vendor
+   * prefixes here. Nib will
+   * add them for us
+   */
+  background-color background-color
+  border-bottom 1px solid lighten(main-color, 30%)
+
+  p
+    padding 5px 0px  
+    float left
+
+  .login
+    height 95%
+    padding 1px 0px
+    float right
+
+  label
+    padding 5px 5px
+    border 1px solid main-color
+
+    input
+      margin 0px 3px
+      padding 5px 5px
+      border none
+      border-radius 5px
+      background-color background-color
+      color #fff
+
+p
+  line-height 1.8
+
+.container-fluid  
+  min-height 100%
+
+.main-content
+  padding 10px
+  padding-bottom 80px
+
+footer
+  position absolute
+  bottom 0
+  left 0
+  height 80px
+  width 100%
+  padding 20px 0px
+  font-size 13px
+
+  p#footmenu
+    position relative
+    float left
+
+  p#copy
+    position relative
+    float right

@@ -1,0 +1,47 @@
+extend layout
+
+block header
+  header
+    .row
+      .col-md-1
+      .col-md-10
+        p. 
+          ... todo
+
+block signupForm
+    form(role="form" action='/signup', method='post')
+      div(class="form-group")
+        label(for="username") User Name
+        input(type="text", class="form-control", id="username", name="username", placeholder="Enter Username")
+
+      div(class="form-group")
+        label(for="email") Email address
+        input(type="email", class="form-control", id="email", name="email", placeholder="Enter Email")
+
+      div(class="form-group")
+        label(for="password") Choose Password
+        input(type="password", class="form-control", id="password", name="password", placeholder="Choose a Password")
+
+      div(class="form-group")
+        label(for="confpassword") Choose Password
+        input(type="password", class="form-control", id="confpassword", placeholder="Confirm Password")   	  
+
+      div(class="checkbox")
+        label
+          <input type="checkbox" name="newsletter" id="newsletter"> Sign Up For The Neswletter
+
+      div(class="checkbox")
+        label
+          <input type="checkbox" name="notices" id="notices">Recieve Notices
+
+
+      button(type="submit" class="btn btn-default") Submit
+
+
+block content
+  content
+    .row
+      .col-md-1
+      .col-md-10    
+        .main-content
+          block signupForm
