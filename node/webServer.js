@@ -5,16 +5,21 @@ var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var Server = require('mongodb').Server;
 var version = require('./version');
-var fs = require('fs');
+var crypto = require('crypto');
+
+var database = 'universalConquest';
 
 // Set up the connection to the local db
 var mongoclient = new MongoClient(new Server("localhost", 27017), {native_parser: true});
 
-version.init('universalConquest', mongoclient);
+console.log('***Beginning Server***');
+console.log();
 
-if(version.needsUpdate()){
-  version.update();
-}
+version.init(database, mongoclient);
+
+//if(version.needsUpdate()){
+//  version.update();
+//}
 
 var app = express();
 
@@ -69,28 +74,29 @@ app.post('/signup', function(req, res) {
   var newsletters = req.body.newsletters === "on";
   var notices = req.body.notices === "on"; 
 
-  MongoClient.connect('mongodb://127.0.0.1:27017/users', function(err, db) {
-    if(err) throw err;
+  mongoclient.open(function(err, mongoclient) {
+      if(err) throw err;
 
-    var collection = db.collection('users');
-    collection.insert({a:2}, function(err, docs) {
+      var db = mongoclient.db(database);
 
-      collection.count(function(err, count) {
-        console.log(format("count = %s", count));
-      });
-
-      // Locate all the entries using find
-      collection.find().toArray(function(err, results) {
-        console.dir(results);
-        // Let's close the db
-        db.close();
-      });
-    });
-  });
-
-  res.render('signupSuccess',
-    { title : 'Universal Conquest - Congratulations' }
-  ); 	
+      if(db) {
+        var users = db.collection('users');
+        user = "{ userName:\"" + userName + "\", password:\"" + password + "\", email:\"" + email + "\", newsletters:\"" + newsletters + "\", notices:\"" + notices + "\"}";
+        collection.insert(user, function(err, result) {
+          if(err) {
+            res.render('signupFailure',
+              { title : 'Universal Conquest - Error' }
+            ); 
+          } else {
+            res.render('signupSuccess',
+              { title : 'Universal Conquest - Congratulations' }
+            ); 
+          }
+        });                
+      } else {
+        console.log("Error: Database doesn't exist.");
+      }
+  });	
 });
 
 app.post('/login', function(req, res) {
